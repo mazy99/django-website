@@ -1,0 +1,66 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Мой сайт{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'main/css/style.css' %}">
+   
+</head>
+<body>
+<div class="glass-background"></div>
+   <button class="menu-trigger" tabindex="0" aria-label="Открыть меню">&#9776;</button>
+    <aside class="sidebar" tabindex="0">
+        <nav>
+            <div class="logo">
+                <img src="{% static 'main/img/logo_corp.png' %}" alt="Логотип">
+            </div>
+            <a href="{% url 'home' %}">
+                <img src="{% static 'main/img/house-solid.svg' %}" alt="Главная" class="menu-icon">
+                Главная</a>
+            <a href="{% url 'about' %}">
+                <img src ="{% static 'main/img/about.png' %}" alt="О нас" class="menu-icon">
+                О нас</a>
+            <a href="{% url 'news_index' %}">
+                <img src ="{% static 'main/img/news.png' %}" alt="Новости" class="menu-icon">
+                Новости</a>
+            {%if user.is_authenticated %}
+            <a href="{% url 'create' %}">
+                <img src ="{% static 'main/img/add.png' %}" alt="Новости" class="menu-icon">
+                Создать новость</a>
+            {%endif %}
+        </nav>
+    </aside>
+    <div class="auth-buttons">
+    {% if user.is_authenticated %}
+        <span class="user-greet">Привет, {{ user.username }}!</span>
+        <form action="{% url 'logout' %}" method="post" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit" class="btn auth-btn">Выйти</button>
+        </form>
+    {% else %}
+        {%if not request.path == '/users/login/'  and not request.path == '/users/register/'%}
+        <a href="{% url 'login' %}" class="btn auth-btn">Войти</a>
+        <a href="{% url 'register' %}" class="btn auth-btn">Регистрация</a>
+        {% endif %}
+    {% endif %}
+</div>
+    <main>
+        {% block content %}
+        <!-- Контент страницы будет здесь -->
+        {% endblock %}
+    </main>
+
+    <footer>
+        <p>© 2025 BitFlow</p>
+    </footer>
+<script>
+        // Открытие меню по клику на кнопку (для мобильных)
+        const trigger = document.querySelector('.menu-trigger');
+        const sidebar = document.querySelector('.sidebar');
+        trigger.addEventListener('mouseenter', () => sidebar.focus());
+        trigger.addEventListener('click', () => sidebar.focus());
+        sidebar.addEventListener('mouseleave', () => sidebar.blur());
+    </script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+{% extends 'main/base.html' %}
+
+
+{%block title%}{{news_detail.title}}{%endblock%}
+{% block content %}
+  <div class="news-detail">
+    <h1>{{ news_detail.title }}</h1>
+    <h3>{{ news_detail.anons }}</h3>
+    <div class="news-text">
+      {{ news_detail.text|linebreaks }}
+    </div>
+    <p class="news-date">Дата публикации: {{ news_detail.date|date:"d.m.Y H:i" }}</p>
+    <a href="{% url 'news_index' %}" class="btn">К списку новостей</a>
+    {% if user.is_authenticated %}
+    <a href ="{% url 'news_update' news_detail.pk %}" class="btn">Редактировать</a>
+    <a href ="{% url 'news_delete' news_detail.pk %}" class="btn">Удалить</a>
+    {% endif %}
+  </div>
+{% endblock %}

@@ -1,0 +1,95 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+{% block title %}О нас{% endblock %}
+
+{% block content %}
+<div class="about-page">
+    <section class="about-hero">
+        <h1>О нашей команде</h1>
+        <p class="hero-description">Мы — небольшая, но амбициозная команда разработчиков, дизайнеров и аналитиков, которые любят создавать качественные и эффективные веб-решения.</p>
+    </section>
+
+    <section class="about-history">
+        <h2 class="section-title">Наша история</h2>
+        <div class="history-content">
+            <img src="{% static 'main/img/office.jpg' %}" alt="Наш офис" class="history-image">
+            <div class="history-text">
+                <p>Компания была основана в 2020 году группой энтузиастов, увлечённых Python и Django. С тех пор мы реализовали более 50 проектов — от лендингов до сложных CRM-систем.</p>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-number">50+</div>
+                        <div class="stat-label">реализованных проектов</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">3</div>
+                        <div class="stat-label">года на рынке</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">довольных клиентов</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="team-section">
+        <h2 class="section-title">Наша команда</h2>
+        <div class="team-grid">
+            {% for member in team %}
+            <div class="team-card">
+                <img src="{% static member.photo %}" alt="{{ member.name }}" class="team-photo">
+                <h3 class="team-name">{{ member.name }}</h3>
+                <p class="team-role">{{ member.role }}</p>
+                <p class="team-bio">{{ member.bio }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <section class="mission-section">
+        <h2 class="section-title">Наша миссия</h2>
+        <div class="mission-card">
+            <img src="{% static 'main/img/target.png' %}" alt="Миссия" class="mission-icon">
+            <p>Помогать бизнесу развиваться с помощью технологий. Мы верим, что надёжное программное обеспечение должно быть доступно каждому.</p>
+        </div>
+    </section>
+
+    <section class="values-section">
+        <h2 class="section-title">Наши ценности</h2>
+        <div class="values-grid">
+            <div class="value-card">
+                <h3>Качество</h3>
+                <p>Мы не идём на компромиссы в качестве кода и пользовательского опыта</p>
+            </div>
+            <div class="value-card">
+                <h3>Прозрачность</h3>
+                <p>Честность и открытость в работе с клиентами</p>
+            </div>
+            <div class="value-card">
+                <h3>Инновации</h3>
+                <p>Постоянное развитие и внедрение новых технологий</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="contacts-section">
+        <h2 class="section-title">Контакты</h2>
+        <div class="contacts-card">
+            <div class="contact-item">
+                <img src="{% static 'main/img/email.png' %}" alt="Email" class = "about-icon" >
+                <span>info@mycompany.ru</span>
+            </div>
+            <div class="contact-item">
+                <img src="{% static 'main/img/phone.png' %}" alt="Телефон" class = "about-icon" >
+                <span>+7 (999) 123-45-67</span>
+            </div>
+            <div class="contact-item">
+                <img src="{% static 'main/img/location.png' %}" alt="Адрес" class = "about-icon" >
+                <span>г. Москва, ул. Программная, д. 42</span>
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock %}

@@ -1,0 +1,65 @@
+
+{% extends "main/base.html" %}
+{% load static %}
+
+{% block title %}Главная — Веб-разработка на Django{% endblock %}
+
+{% block content %}
+<h1>Современные веб-решения для вашего бизнеса</h1>
+
+<p>
+    <strong>Наша компания</strong> специализируется на разработке надёжных и масштабируемых веб-приложений на Django. Мы помогаем бизнесу автоматизировать процессы, создаём корпоративные порталы, интернет-магазины и интегрируем современные IT-решения под ваши задачи.
+</p>
+
+<section>
+    <h2 class="section-title">Наши услуги</h2>
+    <div class="services-grid">
+        {% for service in services %}
+            <div class="service-card">
+                <div class="service-content">
+                    <img src="{% static service.icon %}" alt="" class="service-icon">
+                    <span class="service-title">{{ service.title }}</span>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</section>
+
+<section class="why-us">
+    <h2 class="section-title">Почему выбирают нас?</h2>
+    <div class="why-us-list">
+        <div class="why-us-item">
+            <span class="why-us-num">1</span>
+            <div>
+                <strong>Экспертиза:</strong> Более 5 лет опыта в Django и Python-разработке
+            </div>
+        </div>
+        <div class="why-us-item">
+            <span class="why-us-num">2</span>
+            <div>
+                <strong>Надёжность:</strong> Соблюдаем стандарты качества, тестируем и документируем код
+            </div>
+        </div>
+        <div class="why-us-item">
+            <span class="why-us-num">3</span>
+            <div>
+                <strong>Индивидуальный подход:</strong> Внимательно изучаем задачи клиента и предлагаем оптимальные решения
+            </div>
+        </div>
+        <div class="why-us-item">
+            <span class="why-us-num">4</span>
+            <div>
+                <strong>Поддержка:</strong> Оперативно реагируем на запросы, всегда на связи
+            </div>
+        </div>
+        <div class="why-us-item">
+            <span class="why-us-num">5</span>
+            <div>
+                <strong>Безопасность:</strong> Используем современные методы защиты данных
+            </div>
+        </div>
+    </div>
+</section>
+
+
+{% endblock %}
